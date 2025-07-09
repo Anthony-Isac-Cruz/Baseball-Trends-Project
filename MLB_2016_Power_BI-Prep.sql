@@ -64,7 +64,7 @@ SELECT * FROM enriched;
 /* Step 3: Adding MLB Table values */
 
 
-CREATE OR REPLACE TABLE `baseballtrends.DSI.enriched_baseball_schedules_v2` AS
+CREATE OR REPLACE TABLE `your_project.your_dataset.enriched_baseball_schedules_v2` AS
 WITH EnrichedCombined AS (
   SELECT 
     A.*,  -- include all original columns
@@ -80,10 +80,10 @@ WITH EnrichedCombined AS (
       WHEN B.Division LIKE '%NL%' THEN 'National'
       WHEN B.Division LIKE '%AL%' THEN 'American'
     END AS AwayConference
-  FROM `baseballtrends.DSI.enriched_baseball_schedules_source` A 
-  LEFT JOIN `baseballtrends.DSI.MLB_City` C 
+  FROM `your_project.your_dataset.enriched_baseball_schedules_source` A 
+  LEFT JOIN `your_project.your_dataset.MLB_City` C 
     ON C.Team_Name = A.homeTeamName
-  LEFT JOIN `baseballtrends.DSI.MLB_City` B 
+  LEFT JOIN `your_project.your_dataset.MLB_City` B 
     ON B.Team_Name = A.awayTeamName
 )
 SELECT * FROM EnrichedCombined;
